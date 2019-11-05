@@ -1,5 +1,6 @@
 package com.example.configserver.controller;
 
+import com.example.configserver.bean.Student;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.context.environment.EnvironmentChangeEvent;
@@ -26,10 +27,17 @@ public class ViewController {
     private RefreshScope scope;
     @Value("name")
     private String name;
+    @Autowired
+    Student student;
 
     @GetMapping
     public String say() {
         return this.name;
+    }
+
+    @GetMapping("student")
+    public Student student() {
+        return this.student;
     }
 
     @GetMapping("refresh")
